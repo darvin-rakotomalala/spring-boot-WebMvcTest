@@ -1,0 +1,50 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: 'true'
+          batch_size: '50'
+    hibernate:
+      ddl-auto: 'update'
+  datasource:
+    driverClassName: org.postgresql.Driver
+    password: '@postgresql.password@'
+    username: '@postgresql.username@'
+    url: '@postgresql.url@'
+  profiles:
+    active: LOCAL
+  main:
+    lazy-initialization: 'true'
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    throw-exception-if-no-handler-found: 'true'
+  resources:
+    add-mappings: 'false'
+cors:
+  allowed:
+    origins: '*'
+application:
+  description: '@project.description@'
+  name: '@project.artifactId@'
+build:
+  timestamp: '@maven.build.timestamp@'
+  version: '@project.version@'
+modules:
+  logging:
+    logs:
+      folder:
+        path: ./logs
+    application:
+      name: '@project.artifactId@'
+server:
+  port: '8080'
+logging:
+  level:
+    org:
+      hibernate:
+        type: TRACE
+        SQL: DEBUG
